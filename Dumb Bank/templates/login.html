@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Dumb Bank</a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/transaction">Transactions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>Login Page</h2>
+        <form method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+    <div class="container mt-5">
+        <div class="card">
+            <div class ="card-body">
+                <h5 class="card-title">SQL QUERY LOGS</h5>
+                <div id="sqllog" class="border p-3"></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url: "sqllog",
+                dataType: "text",
+                success: function(data) {
+                    var sqllog = document.getElementById('sqllog');
+                    var logEntry = document.createElement('p');
+                    logEntry.textContent = data;
+                    sqllog.appendChild(logEntry);
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error fetching log:", error);
+                }
+            });
+        });
+    </script>
+          <script>
+            console.clear();
+    const header = [
+      'color: red',
+      'text-shadow: 2px 2px purple', 
+      'font-size: 3em',
+      'padding: 20px',
+      'font-family: fantasy'
+    ].join(';');
+    console.log('%cSYSTEM00 SECURITY', header,'LAB BY : https://system00sec.org/');
+          </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Activity Logs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Activity Logs</h2>
+        <ul id="logs-list" class="list-group">
+            {% for log in logs %}
+                <li class="list-group-item">{{ log }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('activity_log', function(data) {
+            var logsList = document.getElementById('logs-list');
+            var logEntry = document.createElement('li');
+            logEntry.className = 'list-group-item';
+            logEntry.textContent = data.log;
+            logsList.appendChild(logEntry);
+        });
+    </script>
+</body>
+</html>
+
